@@ -14,14 +14,24 @@ const io = socketIO(server);
 app.use('/', express.static(path.join(__dirname, '../public')));
 
 io.on('connection', socket =>{
-    socket.emit('createMessage',{
-        from: 'email@gmail.com',
-        text: 'text',
-        createdAt: Date.now().toString()
+
+    socket.emit('newMessage', {
+        from: "Admin",
+        text: "Welcome to the chat!",
+        createdAt: new Date().getTime(),
     });
 
-    socket.on('newMessage', data =>{
-        console.log('newMessage', data);
+    socket.broadcast.emit('newMessage',{
+        from: "Admin",
+        text: "New user joined!",
+        createdAt: new Date().getTime(),
+    });
+
+    socket.on('createMessage', data =>{
+        io.emit('newMessage',{
+            ...data,
+            createdAt: new Date().getTime(),
+        });
     });
 
     socket.on('disconnect', socket => {
