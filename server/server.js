@@ -14,10 +14,16 @@ const io = socketIO(server);
 app.use('/', express.static(path.join(__dirname, '../public')));
 
 io.on('connection', socket =>{
-    // socket.emit('request', /* */); // emit an event to the socket
-    // io.emit('broadcast', /* */); // emit an event to all connected sockets
-    // socket.on('reply', function(){ /* */ }); // listen to the event
-    console.log("connection done");
+    socket.emit('createMessage',{
+        from: 'email@gmail.com',
+        text: 'text',
+        createdAt: Date.now().toString()
+    });
+
+    socket.on('newMessage', data =>{
+        console.log('newMessage', data);
+    });
+
     socket.on('disconnect', socket => {
         console.log("User disconected");
     });
