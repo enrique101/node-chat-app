@@ -21,8 +21,9 @@ io.on('connection', socket =>{
 
     socket.broadcast.emit('newMessage', generateMessage('Admin', 'New user just join!'));
 
-    socket.on('createMessage', data =>{
+    socket.on('createMessage', (data, fn) =>{
         io.emit('newMessage',generateMessage(data.from, data.text));
+        fn('this is from server');
     });
 
     socket.on('disconnect', socket => {
