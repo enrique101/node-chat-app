@@ -3,7 +3,7 @@ const http = require('http');
 const express = require('express');
 const socketIO = require('socket.io');
 
-const { generateMessage } = require('./utils/message');
+const { generateMessage, generateLocationMessage } = require('./utils/message');
 
 const port = process.env.PORT || 3000;
 
@@ -24,6 +24,10 @@ io.on('connection', socket =>{
     socket.on('createMessage', (data, fn) =>{
         io.emit('newMessage',generateMessage(data.from, data.text));
         fn('this is from server');
+    });
+
+    socket.on('createLocationMessage', coords =>{
+        io.emit('newLocationMessage',generateLocationMessage('Admin', coords.latitude, coords.longitude));
     });
 
     socket.on('disconnect', socket => {
