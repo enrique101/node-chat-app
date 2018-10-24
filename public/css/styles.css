@@ -41,11 +41,12 @@ button:disabled{
 
 .app-wrapper{
     display: grid;
-    grid-template-rows: 100vh;
+    grid-template-rows: calc(100vh - 2rem);
     grid-template-columns: 1fr 5fr;
     grid-gap: 10px;
     background:var(--main-bg-color);
     font-size: 1.6rem;
+    padding: 1rem;
 }
 
 .chat{
