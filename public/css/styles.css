@@ -1,0 +1,70 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: Helvetica,Arial,sans-serif;
+  }
+
+  :root{
+      --main-bg-color: #1c2128;
+      --secondary-bg-color: #39464e;
+  }
+button:focus,
+input:focus { 
+    outline: none; 
+}
+
+button{
+    background:#000000;
+    color: #fff;
+    border:1px solid #fff;
+    padding: 5px 15px;
+    margin: 0;
+    transition: all 0.5s; 
+}
+
+button:hover{
+    background:var(--main-bg-color);
+    cursor: pointer;
+}
+
+.app-wrapper{
+    display: grid;
+    grid-template-rows: 100vh;
+    grid-template-columns: 1fr 5fr;
+    grid-gap: 10px;
+    background:var(--main-bg-color);
+}
+
+.chat{
+    display: grid;
+    grid-template-rows: 1fr auto;
+    grid-row-gap: 10px;
+}
+
+.messages{
+    margin: 0;
+    padding: 20px;
+    color: #fff;
+    list-style: none;
+}
+
+.rounded{
+    border-radius: 15px;
+    background: var(--secondary-bg-color);
+}
+
+.message-form{
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    grid-column-gap: 10px;
+    padding: 15px 7px;
+}
+
+.message-form input[type=text]{
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: 0;
+    color: #fff;
+    font-size: 1rem;
+}
