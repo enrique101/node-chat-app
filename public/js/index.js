@@ -42,19 +42,24 @@ document.querySelector('#message-form').addEventListener('submit',(e)=>{
     });
 });
 
-document.querySelector('#send-location').addEventListener('click',(e)=>{
+const locationButton = document.querySelector('#send-location');
+
+locationButton.addEventListener('click',(e)=>{
     e.preventDefault();
+    locationButton.disabled = true;
     if(!navigator.geolocation){
         return alert('No geolocation!');
     }
     navigator.geolocation.getCurrentPosition(position =>{
         const { coords: {longitude, latitude} } = position;
+        locationButton.disabled = false;
         socket.emit('createLocationMessage', {
             longitude,
             latitude,
         });
     },
     error =>{
+        document.querySelector('#send-location').disabled = true;
         alert('Unable to get access to geolocation :(');
     })
 
