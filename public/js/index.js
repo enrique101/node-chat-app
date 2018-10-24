@@ -8,21 +8,22 @@ socket.on('disconnect', ()=>{
 });
 
 socket.on('newMessage', data =>{
-    const { from, text } = data;
+    const { from, text, createdAt } = data;
     const newMessage = document.createElement("li");
-    newMessage.innerHTML = `${from}: ${text}`;
+    const formatedTime = moment(createdAt).format('h:mm a');
+    newMessage.innerHTML = `${from} ${formatedTime}: ${text}`;
     document.querySelector('#messages').appendChild(newMessage);
 });
 
 socket.on('newLocationMessage', data =>{
-    console.log(data);
-    const { from, text } = data;
+    const { from, createdAt } = data;
+    const formatedTime = moment(createdAt).format('h:mm a');
     const newMessage = document.createElement("li");
     const link = document.createElement("a");
     link.target = '_blank';
     link.innerText = `I'm here! :D`,
     link.href = data.url;
-    newMessage.innerHTML = `${from}: `;
+    newMessage.innerHTML = `${from} ${formatedTime}: `;
     newMessage.appendChild(link);
     document.querySelector('#messages').appendChild(newMessage);
 });
