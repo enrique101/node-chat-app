@@ -3,11 +3,18 @@
     margin: 0;
     font-family: Helvetica,Arial,sans-serif;
   }
-
+html{
+    font-size: 10px;
+}
   :root{
       --main-bg-color: #1c2128;
       --secondary-bg-color: #39464e;
   }
+  a,
+  a:visited{
+      color: lightskyblue;
+  }
+
 button:focus,
 input:focus { 
     outline: none; 
@@ -20,6 +27,7 @@ button{
     padding: 5px 15px;
     margin: 0;
     transition: all 0.5s; 
+    font-size: 1.6rem;
 }
 
 button:hover{
@@ -37,6 +45,7 @@ button:disabled{
     grid-template-columns: 1fr 5fr;
     grid-gap: 10px;
     background:var(--main-bg-color);
+    font-size: 1.6rem;
 }
 
 .chat{
@@ -50,6 +59,10 @@ button:disabled{
     padding: 20px;
     color: #fff;
     list-style: none;
+}
+
+.message{
+    margin-top: 10px;
 }
 
 .rounded{
@@ -70,5 +83,13 @@ button:disabled{
     background: none;
     border: 0;
     color: #fff;
-    font-size: 1rem;
+    font-size: 1.6rem;
+}
+
+.from{
+    font-weight: bold;
+}
+
+.created{
+    color: gray;
 }

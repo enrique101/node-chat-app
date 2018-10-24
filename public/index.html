@@ -17,9 +17,32 @@
                 </form>
             </section>
         </article>
+        <script id="message-template" type="text/template">
+            <li class="message">
+                <div class="message__title">
+                    <span class="from">{{from}}</span>
+                    <span class="created">{{createdAt}}</span>
+                </div>
+                <p class="message__body">
+                    {{text}}
+                </p>
+            </li>
+        </script>
 
+        <script id="location-message-template" type="text/template">
+            <li class="message">
+                <div class="message__title">
+                    <span class="from">{{from}}</span>
+                    <span class="created">{{createdAt}}</span>
+                </div>
+                <p class="message__body">
+                    <a href="{{url}}" target="_blank">I'm here!</a>
+                </p>
+            </li>
+        </script>
 
         <script src="/socket.io/socket.io.js"></script>
+        <script src="/js/libs/mustache.min.js"></script>
         <script src="/js/libs/moment.min.js"></script>
         <script src="/js/index.js"></script>
     </body>
