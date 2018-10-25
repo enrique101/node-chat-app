@@ -7,6 +7,19 @@ socket.on('disconnect', ()=>{
     console.log('Disconnected from server');
 });
 
+const scrollToBottom = ()=>{
+    const messages = document.querySelector('#messages');
+    const newMessage = messages.querySelector('li:last-child');
+    const lastMessage = messages.querySelector('li:nth-last-child(2)');
+    const {clientHeight, scrollTop, scrollHeight} = messages;
+    console.table({clientHeight, scrollTop, scrollHeight});
+    const newMessageHeight = newMessage.clientHeight;
+    const lastMessageHeight = lastMessage ? lastMessage.clientHeight : 0;
+    if(clientHeight + scrollTop + newMessageHeight + lastMessageHeight >= scrollHeight){
+        messages.scrollTop = scrollHeight;
+    }
+};
+
 socket.on('newMessage', data =>{
     const { createdAt } = data;
     const templateRaw = document.querySelector('#message-template').innerHTML;
@@ -17,6 +30,7 @@ socket.on('newMessage', data =>{
     const node = document.createElement('template');
     node.innerHTML = template;
     document.querySelector('#messages').appendChild(node.content.firstElementChild);
+    scrollToBottom();
 });
 
 socket.on('newLocationMessage', data =>{
@@ -29,17 +43,7 @@ socket.on('newLocationMessage', data =>{
     const node = document.createElement('template');
     node.innerHTML = template;
     document.querySelector('#messages').appendChild(node.content.firstElementChild);
-
-    // const { from, createdAt } = data;
-    // const formatedTime = moment(createdAt).format('h:mm a');
-    // const newMessage = document.createElement("li");
-    // const link = document.createElement("a");
-    // link.target = '_blank';
-    // link.innerText = `I'm here! :D`,
-    // link.href = data.url;
-    // newMessage.innerHTML = `${from} ${formatedTime}: `;
-    // newMessage.appendChild(link);
-    // document.querySelector('#messages').appendChild(newMessage);
+    scrollToBottom();
 });
 
 

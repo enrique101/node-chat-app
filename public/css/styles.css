@@ -47,12 +47,18 @@ button:disabled{
     background:var(--main-bg-color);
     font-size: 1.6rem;
     padding: 1rem;
+    grid-template-areas:
+        "sidebar content"
+}
+.people{
+    grid-area: sidebar;
 }
 
 .chat{
     display: grid;
     grid-template-rows: 1fr auto;
     grid-row-gap: 10px;
+    grid-area: content;
 }
 
 .messages{
@@ -60,6 +66,7 @@ button:disabled{
     padding: 20px;
     color: #fff;
     list-style: none;
+    overflow: auto;
 }
 
 .message{
@@ -94,3 +101,14 @@ button:disabled{
 .created{
     color: gray;
 }
+
+@media (max-width: 700px) {
+    .app-wrapper{
+        grid-template-areas:
+            "content"
+    }
+
+    .chat{
+        grid-column: 1 / 5;
+    }
+  }
