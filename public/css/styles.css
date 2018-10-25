@@ -111,4 +111,7 @@ button:disabled{
     .chat{
         grid-column: 1 / 5;
     }
+    .people{
+        display: none;
+    }
   }

@@ -4,46 +4,27 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="/css/styles.css">
+        <link rel="stylesheet" href="/css/join.css">
+        <title>Join | Chat!</title>
     </head>
     <body>
-        <article class="app-wrapper">
-            <aside class="people rounded">People</aside>
-            <section class="chat">
-                <ol id="messages" class="messages rounded"></ol>
-                <form id="message-form" class="message-form rounded">
-                    <input autocomplete="off" autofocus name="message" type="text" placeholder="Enter Message Here">
-                    <button class="rounded">Send</button>
-                    <button class="rounded" id="send-location">Send My Location!</button>
-                </form>
-            </section>
-        </article>
-        <script id="message-template" type="text/template">
-            <li class="message">
-                <div class="message__title">
-                    <span class="from">{{from}}</span>
-                    <span class="created">{{createdAt}}</span>
-                </div>
-                <p class="message__body">
-                    {{text}}
-                </p>
-            </li>
-        </script>
-
-        <script id="location-message-template" type="text/template">
-            <li class="message">
-                <div class="message__title">
-                    <span class="from">{{from}}</span>
-                    <span class="created">{{createdAt}}</span>
-                </div>
-                <p class="message__body">
-                    <a href="{{url}}" target="_blank">I'm here!</a>
-                </p>
-            </li>
-        </script>
-
-        <script src="/socket.io/socket.io.js"></script>
-        <script src="/js/libs/mustache.min.js"></script>
-        <script src="/js/libs/moment.min.js"></script>
-        <script src="/js/index.js"></script>
+        <form class="form-content" action="/chat.html">
+            <fieldset>
+                <h2>Join to chat!</h2>
+                <label htmlFor="name">
+                    <span>
+                        Display Name
+                    </span>
+                    <input type="text" class="rounded" name="name" placeholder="Name" />
+                </label>
+                <label htmlFor="room">
+                    <span>
+                        Room Name
+                    </span>
+                    <input type="text" class="rounded" name="room" placeholder="Room" />
+                </label>
+                <button class="join-btn rounded" type="submit">Join!</button>
+            </fieldset>
+        </form>
     </body>
 </html>

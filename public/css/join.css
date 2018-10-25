@@ -1,0 +1,39 @@
+.form-content{
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));;
+    grid-template-rows: 100vh;
+    background: var(--main-bg-color);
+    color: #fff;
+    font-size: 1.6rem;
+}
+
+.form-content fieldset{
+    border: none;
+    margin: 0;
+    background: var(--secondary-bg-color);
+    padding: 2rem;
+    border-radius: 1.5rem;
+}
+.form-content fieldset label{
+    display: grid;
+    grid-row-gap: 1rem;
+    margin: 1rem 0;
+}
+
+.join-btn{
+    width: 100%;
+}
+.join-btn:hover{
+    background: var(--main-bg-color);
+}
+
+.form-content input[type=text]{
+    margin: 0;
+    padding: 1rem 0.5rem;
+    background: var(--main-bg-color);
+    border: 0;
+    color: #fff;
+    font-size: 1.6rem;
+}
