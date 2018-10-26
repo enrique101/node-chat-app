@@ -1,24 +1,51 @@
-const socket = io();
-socket.on('connect', ()=>{
-    console.log('connected to server');
-});
-
-socket.on('disconnect', ()=>{
-    console.log('Disconnected from server');
-});
+const getUrlParams = search => {
+    const hashes = search.slice(search.indexOf('?') + 1).split('&');
+    return hashes.reduce((newObj, values) => {
+        const [key, val] = values.split('=');
+        return {
+            ...newObj,
+            [key]: decodeURIComponent(val).replace(new RegExp(/\+/g), ' '),
+        };
+    },{});
+};
 
 const scrollToBottom = ()=>{
     const messages = document.querySelector('#messages');
     const newMessage = messages.querySelector('li:last-child');
     const lastMessage = messages.querySelector('li:nth-last-child(2)');
     const {clientHeight, scrollTop, scrollHeight} = messages;
-    console.table({clientHeight, scrollTop, scrollHeight});
     const newMessageHeight = newMessage.clientHeight;
     const lastMessageHeight = lastMessage ? lastMessage.clientHeight : 0;
     if(clientHeight + scrollTop + newMessageHeight + lastMessageHeight >= scrollHeight){
         messages.scrollTop = scrollHeight;
     }
 };
+
+
+const socket = io();
+socket.on('connect', ()=>{
+    const params = getUrlParams(window.location.search);
+    socket.emit('join', params, err=>{
+        if(err){
+            alert(err);
+            window.location.href = '/';
+        }
+    });
+});
+
+socket.on('disconnect', ()=>{
+    console.log('Disconnected from server');
+});
+
+socket.on('updateUserList', users=>{
+    const templateRaw = document.querySelector('#user-list').innerHTML;
+    const template = Mustache.render(templateRaw,users);
+    const node = document.createElement('template');
+    node.innerHTML = template;
+    const el = document.querySelector('#people');
+    el.innerHTML="";
+    el.append(node.content.firstElementChild);
+});
 
 socket.on('newMessage', data =>{
     const { createdAt } = data;

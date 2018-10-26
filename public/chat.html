@@ -7,7 +7,7 @@
     </head>
     <body>
         <article class="app-wrapper">
-            <aside class="people rounded">People</aside>
+            <aside id="people" class="people rounded"></aside>
             <section class="chat">
                 <ol id="messages" class="messages rounded"></ol>
                 <form id="message-form" class="message-form rounded">
@@ -39,6 +39,15 @@
                     <a href="{{url}}" target="_blank">I'm here!</a>
                 </p>
             </li>
+        </script>
+
+        <script id="user-list" type="text/template">
+            <div>
+                <h3>People</h3>
+                <ol>
+                    {{#.}}<li class="rounded">{{name}}</li>{{/.}}
+                </ol>
+            </div>
         </script>
 
         <script src="/socket.io/socket.io.js"></script>
