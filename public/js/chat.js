@@ -76,12 +76,10 @@ socket.on('newLocationMessage', data =>{
 
 document.querySelector('#message-form').addEventListener('submit',(e)=>{
     e.preventDefault();
-    const from = 'loki';
     const input = event.currentTarget.querySelector("[name=message]");
     const text = input.value;
     input.value = "";
     socket.emit('createMessage', {
-        from,
         text,
     }, data=>{
         console.log(`got it ${data}`);

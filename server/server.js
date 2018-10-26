@@ -35,12 +35,16 @@ io.on('connection', socket =>{
     });
 
     socket.on('createMessage', (data, fn) =>{
-        io.emit('newMessage',generateMessage(data.from, data.text));
+        const { name, room } = users.get(socket.id);
+        if(name && isValidString(data.text)){
+            io.to(room).emit('newMessage',generateMessage(name, data.text));
+        }
         fn('this is from server');
     });
 
     socket.on('createLocationMessage', coords =>{
-        io.emit('newLocationMessage',generateLocationMessage('Admin', coords.latitude, coords.longitude));
+        const { name, room } = users.get(socket.id);
+        io.to(room).emit('newLocationMessage',generateLocationMessage(name, coords.latitude, coords.longitude));
     });
 
     socket.on('disconnect', () => {

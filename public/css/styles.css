@@ -78,7 +78,7 @@ button:disabled{
 
 .people ol li{
     background: var(--main-bg-color);
-    padding: 2rem 1.5rem;
+    padding: 1.5rem 1rem;
     color: #fff;
 }
 
